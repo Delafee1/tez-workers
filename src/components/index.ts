@@ -5,3 +5,5 @@ export * from './Main';
 export * from './Profile';
 
 export * from './Table';
+
+export * from './Achievment';

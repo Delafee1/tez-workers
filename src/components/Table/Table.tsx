@@ -11,6 +11,7 @@ const Table: React.FC = () => {
         <div className={cn(s.button, s.button_green)}>Siandien</div>
         <div className={s.button}>Vakar</div>
         <div className={s.button}>Savaite</div>
+        <div className={s.button}>Uz visa laika</div>
       </div>
       <div className={s['table-wrapper']}>
       <div className={cn(s.row, s.titles)}>

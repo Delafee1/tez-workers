@@ -1,0 +1,44 @@
+.wrapper {
+  background: #3C6CF7;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  &_green {
+    background: #4CBB17;
+  }
+
+  &_disabled {
+    background: gray;
+    opacity: 0.5;
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  margin-right: 10px;
+  border: 2px solid white;
+}
+
+.text {
+  font-size: 12px;
+}

@@ -1,11 +1,109 @@
+@mixin customScrollbar($orientation: all, $active-color: #f26e40, $bg-color: #f9f9f9) {
+  $local-size: 3px;
+  $local-radius: 4px;
+
+  @if $orientation == all {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: $local-size;
+      height: $local-size;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  @if $orientation == y {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: $local-size;
+      height: 0;
+    }
+  }
+
+  @if $orientation == x {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: $local-size;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: 5px -5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: $bg-color;
+    border-radius: $local-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $local-radius;
+    box-shadow: 0 0 20px 20px $active-color inset;
+  }
+
+  /* стилизация элементов прокрутки для Firefox */
+  scrollbar-color: $active-color $bg-color;
+  scrollbar-width: $local-size;
+
+  /* стилизация элементов прокрутки для IE и Edge */
+  -ms-overflow-style: none;
+  scrollbar-base-color: $bg-color;
+  scrollbar-face-color: $active-color;
+  scrollbar-arrow-color: $bg-color;
+}
+
 .wrapper {
-  background: #8cabe98e;
-  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.25);
   z-index: 2;
-  padding: 20px;
+  padding: 20px 20px 0;
   width: 500px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  filter: drop-shadow(-2px 0px 5px rgba(0, 0, 0, 0.25));
+  height: 760px;
+
+  &_person {
+    background: #8cabe98e;
+  }
+
+  &_team {
+    background: rgba(0, 255, 13, 0.342);
+  }
+}
+
+.tab {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 60%);
+  background: #8cabe98e;
+  height: 100px;
+  width: 30px;
+  position: absolute;
+  left: -30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &_text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  &_profile {
+    background: #8cabe98e;
+    top: 0;
+  }
+
+  &_team {
+    background: rgba(0, 255, 13, 0.342);
+    top: 100px;
+  }
 }
 
 .photo {
@@ -15,6 +113,11 @@
   width: 100px;
   height: 100px;
   border: 2px solid #3C6CF7;
+  flex-shrink: 0;
+
+  &_team {
+    border: 2px solid #4CBB17;
+  }
 }
 
 .top-content {
@@ -36,5 +139,16 @@
   display: flex;
   gap: 10px;
   justify-content: space-between;
-  max-width: 40%;
+  max-width: 70%;
 }
+
+.achievments {
+  @include customScrollbar(y, #3C6CF7, #8cabe98e);
+  padding-right: 10px;
+  margin-top: 20px;
+
+  &_team {
+    @include customScrollbar(y, #4CBB17, rgba(0, 255, 13, 0.342));
+  }
+}
+
